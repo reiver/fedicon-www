@@ -1,282 +1,511 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<title>FediCon — Fediverse Conference</title>
-
-<meta property="og:url" content="https://fedicon.ca/" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="FediCon — Fediverse Conference" />
-<meta property="og:description" content="2 day Fediverse Conference on August 1st and 2nd, 2025" />
-<meta property="og:image" content="https://fedicon.ca/ogimage.png" />
-
-<link rel="stylesheet" href="normalize.css" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-<style type="text/css">
-.fedicon-section {
-	padding-top:140px;
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FediCon - Fediverse Conference</title>
+    <meta property="og:url" content="https://fedicon.ca/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="FediCon — Fediverse Conference" />
+    <meta property="og:description" content="2 day Fediverse Conference on August 1st and 2nd, 2025" />
+    <meta property="og:image" content="https://fedicon.ca/ogimage.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.8s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'network-pulse': 'networkPulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0px)' },
+                        },
+                        networkPulse: {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '0.7' },
+                            '50%': { transform: 'scale(1.1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.bunny.net/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+        }
+        
+        .dark .gradient-bg {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2a2a2a 100%);
+        }
+        
+        .glass {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        
+        .light-glass {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        .dark .glass {
+            background: rgba(0,0,0,0.4) !important;
+            border-color: rgba(255,255,255,0.1) !important;
+        }
+        
+        .section-spacing {
+            margin-bottom: 8rem;
+        }
+        
+        .hero-text {
+            color: #1e293b;
+        }
+        
+        .dark .hero-text {
+            color: #ffffff;
+        }
+        
+        .accent-text {
+            color: #64748b;
+        }
+        
+        .dark .accent-text {
+            color: #94a3b8;
+        }
+        
+        .network-dot {
+            animation: networkPulse 3s ease-in-out infinite;
+        }
+        
+        .network-dot:nth-child(2) { animation-delay: 0.5s; }
+        .network-dot:nth-child(3) { animation-delay: 1s; }
+        .network-dot:nth-child(4) { animation-delay: 1.5s; }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .dark .hover-lift:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        
+        .dark .glass {
+            background: rgba(0,0,0,0.3) !important;
+            border-color: rgba(255,255,255,0.1) !important;
+        }
+        
+        .dark body {
+            background: #0a0a0a;
+        }
+    </style>
 </head>
-<body>
-	<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-		<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-			<a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
-				<h1 class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">FediCon</h1>
-			</a>
-			<div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-				<a href="#tickets"><button type="button" class="text-white bg-red-700 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><!-- Get Your Tickets -->Join Early Bird List</button></a>
-				<button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
-					<span class="sr-only">Open main menu</span>
-					<svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-						<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-					</svg>
-				</button>
-			</div>
-			<div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
-				<ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-					<li>
-						<a href="#about" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</a>
-					</li>
-<!--
-					<li>
-						<a href="#sponsors" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sponsors</a>
-					</li>
--->
-					<li>
-						<a href="#venue" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Venue</a>
-					</li>
-					<li>
-						<a href="#schedule" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Schedule</a>
-					</li>
-					<li>
-						<a href="#tickets" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Tickets</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+<body class="transition-colors duration-300">
+    <div class="fixed top-6 right-6 z-50">
+        <button id="darkModeToggle" class="glass bg-white/20 dark:bg-gray-800/20 p-3 rounded-full border border-white/30 dark:border-gray-700/30 hover:bg-white/30 dark:hover:bg-gray-700/30 transition-all duration-300 hover-lift">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-400 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+            </svg>
+            <svg class="w-6 h-6 text-gray-600 dark:hidden block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+        </button>
+    </div>
 
-	<div style="background-color:#e33b44;margin-bottom:64px;margin-top:140px;" class="flex items-center justify-center h-64 bg-gray-100">
-		<img src="fedicon-2025.png" alt="FediCon 2025" style="height:40%;" />
-	</div>
+    <div class="fixed inset-0 z-0">
+        <div class="gradient-bg w-full h-full">
+            <div class="absolute top-20 left-20">
+                <div class="network-dot w-3 h-3 bg-gray-400/40 dark:bg-white/30 rounded-full"></div>
+            </div>
+            <div class="absolute top-40 right-32">
+                <div class="network-dot w-2 h-2 bg-gray-500/50 dark:bg-white/40 rounded-full"></div>
+            </div>
+            <div class="absolute bottom-32 left-32">
+                <div class="network-dot w-4 h-4 bg-gray-300/30 dark:bg-white/20 rounded-full"></div>
+            </div>
+            <div class="absolute bottom-20 right-20">
+                <div class="network-dot w-2 h-2 bg-gray-600/60 dark:bg-white/50 rounded-full"></div>
+            </div>
+            
+            <svg class="absolute inset-0 w-full h-full opacity-10 dark:opacity-20">
+                <line x1="80" y1="80" x2="300" y2="160" stroke="#64748b" stroke-width="1"/>
+                <line x1="300" y1="160" x2="150" y2="400" stroke="#64748b" stroke-width="1"/>
+                <line x1="150" y1="400" x2="350" y2="480" stroke="#64748b" stroke-width="1"/>
+            </svg>
+        </div>
+    </div>
 
-	<section id="about" class="fedicon-section max-w-3xl mx-auto bg-white py-12 px-6 md:px-12 lg:px-24">
-		<h2 class="text-3xl font-bold text-gray-900 mb-6">August 1st &amp; 2nd, 2025</h2>
+    <div class="relative z-10 min-h-screen">
+        <header class="pt-32 pb-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center animate-fade-in">
+                    <h1 class="text-7xl md:text-9xl font-bold hero-text mb-6 animate-slide-up tracking-tight">
+                        Fedi<span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Con</span>
+                    </h1>
+                    <p class="text-2xl md:text-3xl accent-text mb-12 animate-slide-up max-w-4xl mx-auto leading-relaxed font-light">
+                        A Canadian conference for decentralized social networks and the social web
+                    </p>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-8 accent-text text-xl animate-slide-up">
+                        <div class="flex items-center gap-3 glass light-glass px-8 py-4 rounded-2xl dark:bg-gray-800/20">
+                            <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                            <span class="font-semibold">August 1st & 2nd, 2025</span>
+                        </div>
+                        <div class="flex items-center gap-3 glass light-glass px-8 py-4 rounded-2xl dark:bg-gray-800/20">
+                            <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="font-semibold">Vancouver, BC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-		<p class="text-gray-700 text-base leading-relaxed mb-4">
-		The first <b>FediCon</b> is a 2 day event — on
-		<b>Friday August 1st, 2025</b>
-		and
-		<b>Saturday August 2nd, 2025</b>.
-		</p>
-		<p class="text-gray-700 text-base leading-relaxed mb-4">
-		It is featuring a selection of curated speakers, lightning talks & demos about apps, protocol features.
-		</p>
+        <main class="pb-32">
+            <div class="container mx-auto px-6">
+                <section class="section-spacing">
+                    <div class="grid md:grid-cols-2 gap-16 items-center">
+                        <div class="animate-slide-up">
+                            <h2 class="text-5xl md:text-6xl font-bold hero-text mb-8 leading-tight">
+                                Two Days of<br>
+                                <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Innovation</span>
+                            </h2>
+                            <p class="accent-text text-xl leading-relaxed mb-8 font-light">
+                                The first FediCon is a 2 day event featuring a selection of curated speakers, lightning talks & demos about apps, protocol features.
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <div class="glass light-glass px-6 py-3 rounded-full border-none">
+                                    <span class="hero-text font-medium">Curated Speakers</span>
+                                </div>
+                                <div class="glass light-glass px-6 py-3 rounded-full border-none">
+                                    <span class="hero-text font-medium">Lightning Talks</span>
+                                </div>
+                                <div class="glass light-glass px-6 py-3 rounded-full border-none">
+                                    <span class="hero-text font-medium">Live Demos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="animate-float">
+                            <div class="glass light-glass p-12 rounded-3xl border-none hover-lift shadow-2xl relative overflow-hidden">
+                                <!-- Background gradient overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 dark:from-purple-400/20 dark:to-blue-400/20"></div>
+                                
+                                <!-- Timeline design -->
+                                <div class="relative z-10">
+                                    <h4 class="text-2xl font-bold hero-text mb-8 text-center">Conference Timeline</h4>
+                                    
+                                    <!-- Day 1 -->
+                                    <div class="flex items-center mb-8">
+                                        <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center shadow-lg mr-6">
+                                            <span class="text-white font-bold text-xl">1</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h5 class="hero-text font-semibold text-lg mb-1">Friday, August 1st</h5>
+                                            <p class="accent-text">Keynote • Deep Dives • Lightning Talks</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex justify-center mb-8">
+                                        <div class="w-1 h-8 bg-gradient-to-b from-purple-500 to-blue-500 rounded-full opacity-50"></div>
+                                    </div>
+                                    
+                                    <div class="flex items-center mb-8">
+                                        <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-lg mr-6">
+                                            <span class="text-white font-bold text-xl">2</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <h5 class="hero-text font-semibold text-lg mb-1">Saturday, August 2nd</h5>
+                                            <p class="accent-text">Keynote • Demos • Lightning Talks</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-		<a href="#tickets"><button type="button" class="text-white bg-red-700 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><!-- Get Your Tickets -->Join Early Bird List</button></a>
-	</section>
+                <section class="section-spacing">
+                    <div class="glass light-glass p-12 md:p-16 rounded-3xl border-none hover-lift animate-slide-up shadow-2xl">
+                        <div class="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h3 class="text-4xl md:text-5xl font-bold hero-text mb-8">Venue</h3>
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-2xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-3">UBC Robson Square</h4>
+                                        <p class="accent-text text-lg">800 Robson Street<br>Vancouver, BC, Canada</p>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xl font-semibold hero-text mb-2">Room</h4>
+                                        <p class="accent-text text-lg">Theatre C300</p>
+                                    </div>
+                                </div>
+                                <a href="https://robsonsquare.ubc.ca/" target="_blank" class="inline-flex items-center mt-8 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-semibold rounded-2xl transition-all duration-300 hover-lift shadow-lg">
+                                    View Location
+                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="flex justify-center">
+                                <div class="w-full max-w-md h-80 glass light-glass rounded-3xl border-none overflow-hidden shadow-xl relative">
+                                    <!-- Google Map Embed -->
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.776!2d-123.12064!3d49.28374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548673f143a94fb3%3A0x847574c045b7e8a7!2sUBC%20Robson%20Square!5e0!3m2!1sen!2sca!4v1620000000000!5m2!1sen!2sca"
+                                        width="100%" 
+                                        height="100%" 
+                                        style="border:0; filter: contrast(1.1) saturate(0.9);" 
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        class="rounded-3xl">
+                                    </iframe>
+                                    
+                                    <!-- Overlay for glassmorphism effect -->
+                                    <div class="absolute inset-0 bg-white/10 dark:bg-black/20 pointer-events-none rounded-3xl"></div>
+                                    
+                                    <!-- Location marker overlay -->
+                                    <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-full shadow-lg">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-<!--
-	<section id="sponsors" class="fedicon-section max-w-3xl mx-auto bg-white py-12 px-6 md:px-12 lg:px-24">
-		<h2 class="text-3xl font-bold text-gray-900 mb-6">Sponsors</h2>
+                <section class="section-spacing">
+                    <div class="text-center mb-16 animate-slide-up">
+                        <h3 class="text-5xl md:text-6xl font-bold hero-text mb-8">Featured Speakers</h3>
+                        <p class="accent-text text-xl max-w-3xl mx-auto font-light">
+                            Learn from the pioneers and innovators building the decentralized future of social media.
+                        </p>
+                        <p class="accent-text text-lg max-w-3xl mx-auto mt-4">
+                            If you would like to present at FediCon 2025, please contact us at <a href="mailto:hello@fedicon.ca?subject=Proposal+to+Present+at+FediCon+2025" class="text-purple-600 hover:text-purple-500 transition-colors font-medium">hello@fedicon.ca</a>
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-10">
+                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
+                            <div class="w-32 h-32 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
+                                <span class="text-white text-3xl font-bold">EP</span>
+                            </div>
+                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Evan S. Prodromou</h4>
+                            <p class="text-purple-500 font-semibold mb-4 text-lg text-center">Fediverse Pioneer</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
+                                    <p class="accent-text text-sm leading-relaxed">
+                                        ActivityPub, ActivityStreams, Fediverse pioneer, GNU Social, identi.ca, OStatus, pump.io, Social Web Foundation, StatusNet, W3C
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
+                                    <p class="accent-text">Connecting the Social Web</p>
+                                </div>
+                            </div>
+                        </div>
 
-		<p class="text-gray-700 text-base leading-relaxed mb-4">
-		To become a <em>sponsor</em>, contact <a href="https://mastodon.social/@reiver">@reiver@mastodon.social</a> (on the Fediverse).
-		</p>
-	</section>
--->
+                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
+                            <div class="w-32 h-32 bg-gradient-to-br from-red-400 to-red-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
+                                <span class="text-white text-3xl font-bold">DS</span>
+                            </div>
+                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Daniel Supernault</h4>
+                            <p class="text-red-500 font-semibold mb-4 text-lg text-center">Creator of Pixelfed & Loops</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
+                                    <p class="accent-text text-sm leading-relaxed">
+                                        Pixelfed, Loops, FediDB, Sup
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
+                                    <p class="accent-text">The Fediverse in Action: Building Social Platforms That Users Actually Want</p>
+                                </div>
+                            </div>
+                        </div>
 
-	<section id="venue" class="fedicon-section max-w-3xl mx-auto bg-white py-12 px-6 md:px-12 lg:px-24">
-		<h2 class="text-3xl font-bold text-gray-900 mb-6">Venue</h2>
+                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
+                            <div class="w-32 h-32 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
+                                <span class="text-white text-3xl font-bold">AA</span>
+                            </div>
+                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Anuj Ahooja</h4>
+                            <p class="text-blue-500 font-semibold mb-4 text-lg text-center">Social Network Innovator</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
+                                    <p class="accent-text text-sm leading-relaxed">
+                                        A New Social, sub.club
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
+                                    <p class="accent-text">TBD</p>
+                                </div>
+                            </div>
+                        </div>
 
-		<p class="text-gray-700 text-base leading-relaxed mb-4">
-		This year's FediCon is happening at:
-		</p>
-		<p class="text-gray-700 text-base leading-relaxed mb-4">
-		UBC Robson Square
-		<br /><br />
-		800 Robson Street,
-		<br />
-		Vancouver, BC, Canada
-		<br /><br />
-		In room <strong>Theatre C300</strong>
-		</p>
-	</section>
+                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
+                            <div class="w-32 h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
+                                <span class="text-white text-3xl font-bold">DO</span>
+                            </div>
+                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Damon Outlaw</h4>
+                            <p class="text-green-500 font-semibold mb-4 text-lg text-center">Fediverse Journalist</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
+                                    <p class="accent-text text-sm leading-relaxed">
+                                        WeDistribute
+                                    </p>
+                                </div>
+                                <div>
+                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
+                                    <p class="accent-text">WeDistribute IRL (Panel)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-	<section id="schedule" class="fedicon-section max-w-3xl mx-auto bg-white py-12 px-6 md:px-12 lg:px-24">
-		<h2 class="text-3xl font-bold text-gray-900 mb-6">Schedule</h2>
+                <section>
+                    <div class="text-center mb-16 animate-slide-up">
+                        <h3 class="text-5xl md:text-6xl font-bold hero-text mb-8">Get Your Tickets</h3>
+                        <p class="accent-text text-xl max-w-3xl mx-auto font-light">
+                            Want to attend FediCon? Enter your details below and we'll let you know the moment early bird registration opens.
+                        </p>
+                    </div>
+                    
+                    <div class="max-w-lg mx-auto animate-slide-up">
+                        <div class="glass light-glass p-12 rounded-3xl border-none hover-lift shadow-2xl">
+                            <form action="https://formsubmit.co/cikrempeaux@gmail.com" method="POST" target="_blank" class="space-y-6">
+                                <div>
+                                    <label for="name" class="block hero-text font-semibold mb-3 text-lg">Full Name</label>
+                                    <input 
+                                        type="text" 
+                                        id="name" 
+                                        name="name"
+                                        required
+                                        placeholder="Your full name"
+                                        class="w-full px-6 py-4 bg-white/30 dark:bg-gray-800/30 border border-gray-300/30 dark:border-gray-600/30 rounded-2xl hero-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-lg"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="email" class="block hero-text font-semibold mb-3 text-lg">Email Address</label>
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        name="email"
+                                        required
+                                        placeholder="your@email.com"
+                                        class="w-full px-6 py-4 bg-white/30 dark:bg-gray-800/30 border border-gray-300/30 dark:border-gray-600/30 rounded-2xl hero-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-lg"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="message" class="block hero-text font-semibold mb-3 text-lg">Fediverse IDs / Handles</label>
+                                    <input 
+                                        type="text" 
+                                        id="message" 
+                                        name="message"
+                                        required
+                                        placeholder="@yourhandle@instance.social"
+                                        class="w-full px-6 py-4 bg-white/30 dark:bg-gray-800/30 border border-gray-300/30 dark:border-gray-600/30 rounded-2xl hero-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-lg"
+                                    >
+                                </div>
+                                <button 
+                                    type="submit"
+                                    class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-semibold py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-lg"
+                                >
+                                    Join Early Bird List
+                                </button>
+                            </form>
+                            
+                            <div class="mt-8 pt-8 border-t border-gray-300/20 dark:border-gray-600/20">
+                                <p class="accent-text text-center">
+                                    Visit <a href="https://fedicon.ca" class="text-purple-600 hover:text-purple-500 transition-colors font-medium">fedicon.ca</a> for updates
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-		<p class="text-gray-700 text-base leading-relaxed mb-4">
-			If you would like to present at FediCon 2025, please contact us at:
-			<br /><br />
-			<a class="font-bold" href="mailto:hello@fedicon.ca?subject=Proposal+to+Present+at+FediCon+2025">hello@fedicon.ca</a>
-		</p>
+                <section class="mt-32">
+                    <div class="glass light-glass p-12 rounded-3xl border-none hover-lift animate-slide-up shadow-2xl text-center">
+                        <h3 class="text-3xl font-bold hero-text mb-6">Organizer</h3>
+                        <p class="accent-text text-lg leading-relaxed">
+                            <strong>FediCon</strong> is being organized by 
+                            <a href="https://mastodon.social/@reiver" class="text-purple-600 hover:text-purple-500 transition-colors font-medium">@reiver@mastodon.social</a>
+                        </p>
+                        <p class="accent-text text-lg leading-relaxed mt-4">
+                            If you have any questions or comments, please contact him.
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
 
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const html = document.documentElement;
 
-		<p class="text-gray-700 text-base leading-relaxed mb-4">
-			The FediCon schedule is <em>coming soon</em>, but <em>some</em> presenters include:
-		</p>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.classList.toggle('dark', savedTheme === 'dark');
 
+        darkModeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
 
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-		<div class="overflow-x-auto bg-white shadow-md rounded-lg">
-			<table class="min-w-full table-auto text-left text-gray-800">
-				<tbody>
-					<tr class="border-t border-gray-200">
-						<td class="px-6 py-4 text-sm font-bold text-gray-800" colspan="2">Evan&nbsp;S.&nbsp;Prodromou</td>
-					</tr>
-					<tr class="border-t border-gray-200">
-						<th class="px-6 py-4 text-sm text-gray-600">Recognized&nbsp;For</th>
-						<td class="px-6 py-4 text-sm text-gray-600">
-							ActivityPub,
-							ActivityStreams,
-							Fediverse&nbsp;pioneer,
-							GNU Social,
-							identi.ca,
-							OStatus,
-							pump.io,
-							Social&nbsp;Web&nbsp;Foundation,
-							StatusNet,
-							W3C
-						</td>
-					</tr>
-					<tr class="border-t border-gray-200">
-						<th class="px-6 py-4 text-sm text-gray-600">Title</th>
-						<td class="px-6 py-4 text-sm text-gray-600">Connecting the Social Web</td>
-					</tr>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-
-					<tr><td colspan="2">&nbsp;<br />&nbsp;</td></tr>
-
-
-					<tr class="border-t border-gray-200">
-						<td class="px-6 py-4 text-sm font-bold text-gray-800" colspan="2">Daniel&nbsp;Supernault</td>
-					</tr>
-					<tr class="border-t border-gray-200">
-						<th class="px-6 py-4 text-sm text-gray-600">Recognized&nbsp;For</th>
-						<td class="px-6 py-4 text-sm text-gray-600">
-							FediDB,
-							Loops,
-							Pixelfed,
-							Pubkit,
-							Sup
-						</td>
-					</tr>
-					<tr class="border-t border-gray-200">
-						<th class="px-6 py-4 text-sm text-gray-600">Title</th>
-						<td class="px-6 py-4 text-sm text-gray-600">
-							The&nbsp;Fediverse&nbsp;in&nbsp;Action:
-							Building&nbsp;Social&nbsp;Platforms&nbsp;That&nbsp;Users&nbsp;Actually&nbsp;Want
-						</td>
-					</tr>
-
-
-					<tr><td colspan="2">&nbsp;<br />&nbsp;</td></tr>
-
-
-					<tr class="border-t border-gray-200">
-						<td class="px-6 py-4 text-sm font-bold text-gray-800">Anuj&nbsp;Ahooja</td>
-					</tr>
-					<tr class="border-t border-gray-200">
-						<th class="px-6 py-4 text-sm text-gray-600">Recognized&nbsp;For</th>
-						<td class="px-6 py-4 text-sm text-gray-600">
-							A New Social,
-							sub.club
-						</td>
-					</tr>
-					<tr class="border-t border-gray-200">
-						<th class="px-6 py-4 text-sm text-gray-600">Title</th>
-						<td class="px-6 py-4 text-sm text-gray-600">
-							TBD
-						</td>
-					</tr>
-
-
-					<tr><td colspan="2">&nbsp;<br />&nbsp;</td></tr>
-
-
-					<tr class="border-t border-gray-200">
-						<td class="px-6 py-4 text-sm font-bold text-gray-800">Damon&nbsp;Outlaw</td>
-					</tr>
-					<tr class="border-t border-gray-200">
-						<th class="px-6 py-4 text-sm text-gray-600">Recognized&nbsp;For</th>
-						<td class="px-6 py-4 text-sm text-gray-600">
-							WeDistribute
-						</td>
-					</tr>
-					<tr class="border-t border-gray-200">
-						<th class="px-6 py-4 text-sm text-gray-600">Title</th>
-						<td class="px-6 py-4 text-sm text-gray-600">
-							WeDistribute IRL
-							<br />
-							(Panel)
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
-	</section>
-
-	<section id="tickets" class="fedicon-section max-w-3xl mx-auto bg-white py-12 px-6 md:px-12 lg:px-24">
-		<h2 class="text-3xl font-bold text-gray-900 mb-6">Tickets</h2>
-
-		<p class="text-gray-700 text-base leading-relaxed mb-4">
-			<strong>Want to attend FediCon?</strong>
-			Enter your e-mail address below and we’ll let you know the moment <strong>early bird</strong> registration opens.
-
-		<div class="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md">
-			<form target="_blank" action="https://formsubmit.co/cikrempeaux@gmail.com" method="POST" class="space-y-4">
-				<div class="flex flex-col space-y-4">
-					<input
-						type="text"
-						name="name"
-						placeholder="Full Name"
-						required="true"
-						class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-					/>
-					<input
-						type="email"
-						name="email"
-						placeholder="Email Address"
-						required="true"
-						class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-					/>
-					<input
-						type="text"
-						name="message"
-						placeholder="Fediverse IDs / Handles"
-						required="true"
-						class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-					/>
-				</div>
-				<button
-					type="submit"
-					class="w-full text-white bg-red-700 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-				>Join Early Bird List</button>
-			</form>
-		</div>
-
-
-		</p>
-	</section>
-
-
-	<br /><br /><br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br /><br /><br />
-	<br /><br /><br /><br /><br /><br /><br /><br />
-
-	<footer class="fedicon-section max-w-3xl mx-auto bg-white py-12 px-6 md:px-12 lg:px-24">
-		<p>
-			<strong>FediCon</strong> is being organized by:
-			<a href="https://mastodon.social/@reiver">@reiver@mastodon.social</a>
-		</p>
-		<p>
-			If you have any questions or comments, please contact him.
-		</p>
-	</footer>
+        document.querySelectorAll('.animate-slide-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
