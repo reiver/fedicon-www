@@ -358,7 +358,7 @@
             class="tickets-link hidden items-center gap-2 rounded-full bg-crimson px-5 py-2.5 text-[12px] font-semibold text-white tracking-wide shadow-[0_10px_30px_-8px_rgba(225,29,46,0.8)] hover:bg-crimson-hi transition-colors"
           >
             <svg
-              class="w-4 h-4"
+              class="hidden md:block w-4 h-4"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -442,7 +442,12 @@
             style="animation-delay: 0.22s"
           >
             A Canadian conference for the
-            <span class="text-white font-medium">fediverse</span>
+            <a
+              class="text-white font-medium underline"
+              href="https://fediverse.info"
+              target="_blank"
+              >fediverse</a
+            >
             — two days of curated talks, lightning demos, and the people
             building the open social web.
           </p>
@@ -453,28 +458,28 @@
           >
             <div class="bg-ink-2/60 px-5 py-5">
               <div class="label text-[10px] text-ash-dim">Dates</div>
-              <div class="mt-1.5 text-white font-semibold text-base sm:text-lg">
+              <div class="my-1.5 text-white font-semibold text-base sm:text-lg">
                 Aug 6 – 9
               </div>
               <div class="font-mono text-[11px] text-ash">2026</div>
             </div>
             <div class="bg-ink-2/60 px-5 py-5">
               <div class="label text-[10px] text-ash-dim">Venue</div>
-              <div class="mt-1.5 text-white font-semibold text-base sm:text-lg">
+              <div class="my-1.5 text-white font-semibold text-base sm:text-lg">
                 UBC Campus
               </div>
               <div class="font-mono text-[11px] text-ash">Vancouver, BC</div>
             </div>
             <div class="bg-ink-2/60 px-5 py-5">
               <div class="label text-[10px] text-ash-dim">Format</div>
-              <div class="mt-1.5 text-white font-semibold text-base sm:text-lg">
+              <div class="my-1.5 text-white font-semibold text-base sm:text-lg">
                 2 Days
               </div>
               <div class="font-mono text-[11px] text-ash">Talks + Demos</div>
             </div>
             <div class="bg-ink-2/60 px-5 py-5">
               <div class="label text-[10px] text-ash-dim">Part of</div>
-              <div class="mt-1.5 text-white font-semibold text-base sm:text-lg">
+              <div class="my-1.5 text-white font-semibold text-base sm:text-lg">
                 FOSSY
               </div>
               <div class="font-mono text-[11px] text-ash">2026</div>
@@ -482,31 +487,34 @@
           </div>
 
           <div
-            class="rise mt-10 flex flex-wrap items-center gap-4"
+            class="rise mt-10 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4"
             style="animation-delay: 0.42s"
           >
             <a
               href="https://2026.fossy.ca/attend/tickets/"
               target="_blank"
               rel="noopener"
-              class="group tickets-link hidden items-center gap-2.5 rounded-full bg-crimson px-7 py-3.5 font-semibold text-white shadow-[0_18px_50px_-16px_rgba(225,29,46,0.9)] hover:bg-crimson-hi transition-colors"
+              class="group tickets-link hidden w-full sm:w-auto items-center justify-center gap-2.5 rounded-full bg-crimson px-7 py-3.5 font-semibold text-white shadow-[0_18px_50px_-16px_rgba(225,29,46,0.9)] hover:bg-crimson-hi transition-colors"
             >
-              Get Your Ticket
-              <svg
-                class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.7"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-              </svg>
+              <div class="flex items-center justify-center gap-2.5">
+                Get Your Ticket
+                <svg
+                  class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                </svg>
+              </div>
             </a>
+
             <a
               href="mailto:hello@fedicon.ca?subject=Proposal+to+Present+at+FediCon+2026"
-              class="pitch-talk hidden items-center gap-2.5 rounded-full border hairline px-7 py-3.5 font-medium text-white hover:border-white/30 hover:bg-white/[0.03] transition-colors"
+              class="pitch-talk hidden w-full sm:w-auto items-center justify-center gap-2.5 rounded-full border hairline px-7 py-3.5 font-medium text-white hover:border-white/30 hover:bg-white/[0.03] transition-colors"
             >
               <svg
                 class="w-5 h-5 text-crimson-hi"
@@ -523,9 +531,10 @@
               </svg>
               Pitch a Talk
             </a>
+
             <a
               href="#schedule"
-              class="inline-flex items-center gap-2.5 rounded-full border hairline px-7 py-3.5 font-medium text-white hover:border-white/30 hover:bg-white/[0.03] transition-colors"
+              class="inline-flex w-full sm:w-auto items-center justify-center gap-2.5 rounded-full border hairline px-7 py-3.5 font-medium text-white hover:border-white/30 hover:bg-white/[0.03] transition-colors"
             >
               <svg
                 class="w-5 h-5 text-crimson-hi"
@@ -548,7 +557,7 @@
               href="https://www.google.com/maps/dir/?api=1&destination=University+of+British+Columbia%2C+Vancouver%2C+BC"
               target="_blank"
               rel="noopener"
-              class="hidden items-center gap-2.5 rounded-full border hairline px-7 py-3.5 font-medium text-white hover:border-white/30 hover:bg-white/[0.03] transition-colors"
+              class="group hidden w-full sm:w-auto items-center justify-center gap-2.5 rounded-full border hairline px-7 py-3.5 font-medium text-white hover:border-white/30 hover:bg-white/[0.03] transition-colors"
             >
               <svg
                 class="w-5 h-5 text-crimson-hi"
@@ -598,6 +607,22 @@
             ><span class="text-crimson">/</span>
             <span class="mx-8">The Open Social Web</span
             ><span class="text-crimson">/</span>
+            <span class="mx-8">The Fediverse</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Decentralized Social</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Curated Talks</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Lightning Talks</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Live Demos</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">No Walled Gardens</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">For People, Not Shareholders</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Self-Hosted Social</span
+            ><span class="text-crimson">/</span>
           </span>
           <span class="flex items-center" aria-hidden="true">
             <span class="mx-8">August 6 – 9, 2026</span
@@ -611,6 +636,22 @@
             <span class="mx-8">ActivityPub</span
             ><span class="text-crimson">/</span>
             <span class="mx-8">The Open Social Web</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">The Fediverse</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Decentralized Social</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Curated Talks</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Lightning Talks</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Live Demos</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">No Walled Gardens</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">For People, Not Shareholders</span
+            ><span class="text-crimson">/</span>
+            <span class="mx-8">Self-Hosted Social</span
             ><span class="text-crimson">/</span>
           </span>
         </div>
@@ -635,10 +676,15 @@
             </h2>
             <p class="mt-6 text-lg text-ash leading-relaxed">
               FediCon brings together developers, founders, and advocates of the
-              fediverse and open social web for two focused days of keynotes,
-              deep dives, lightning talks, and live demos — no walled gardens,
-              no shareholders, just the protocols and people behind the
-              fediverse.
+              <a
+                href="https://fediverse.info"
+                class="underline font-bold text-white"
+                target="_blank"
+                >fediverse</a
+              >
+              and open social web for two focused days of keynotes, deep dives,
+              lightning talks, and live demos — no walled gardens, no
+              shareholders, just the protocols and people behind the fediverse.
             </p>
           </div>
 
@@ -750,7 +796,7 @@
               class="font-display font-extrabold text-white tracking-tight text-3xl sm:text-5xl leading-[1.05]"
             >
               The pioneers and innovators<br class="hidden sm:block" />
-              building the open web.
+              building the <span class="text-crimson-hi">fediverse</span>.
             </h2>
           </div>
 
@@ -1502,18 +1548,20 @@
                   rel="noopener"
                   class="group tickets-link hidden items-center gap-2.5 rounded-full bg-white px-8 py-4 font-semibold text-ink hover:bg-white/90 transition-colors"
                 >
-                  Get Your Ticket
-                  <svg
-                    class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                  </svg>
+                  <div class="flex items-center gap-2.5 justify-center">
+                    Get Your Ticket
+                    <svg
+                      class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                    </svg>
+                  </div>
                 </a>
                 <a
                   href="mailto:hello@fedicon.ca?subject=Proposal+to+Present+at+FediCon+2026"
@@ -1529,10 +1577,10 @@
                     stroke-linejoin="round"
                   >
                     <path
-                      d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+                      d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z"
                     />
                   </svg>
-                  Propose a Talk
+                  Pitch a Talk
                 </a>
               </div>
             </div>
@@ -1555,8 +1603,7 @@
                 >
               </div>
               <p class="mt-4 max-w-xs text-ash leading-relaxed">
-                A Canadian conference for decentralized social networks and the
-                social web.
+                The Canadian fediverse conference.
               </p>
             </div>
 
@@ -1599,8 +1646,13 @@
                   class="text-white hover:text-crimson-hi transition-colors"
                   >Charles Iliya Krempeaux</a
                 ><br />
-                <span class="font-mono text-sm text-ash-dim"
-                  >@reiver@mastodon.social</span
+                <a
+                  class="font-mono text-sm text-ash-dim"
+                  href="https://mastodon.social/@reiver"
+                  rel="me"
+                  target="_blank"
+                  rel="noopener"
+                  >@reiver@mastodon.social</a
                 >
               </p>
               <a
