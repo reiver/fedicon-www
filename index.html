@@ -1,608 +1,841 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FediCon - Fediverse Conference</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FediCon — A Canadian Fediverse Conference</title>
+<meta name="description" content="FediCon — a Canadian 2 day fediverse conference. August 6–9, 2026 · UBC Campus, Vancouver BC · during FOSSY." />
+<script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+<link rel="preconnect" href="https://fonts.bunny.net/" />
+<link href="https://fonts.bunny.net/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 <meta property="og:url" content="https://fedicon.ca/" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="FediCon — Fediverse Conference" />
 <meta property="og:description" content="2 day Fediverse Conference from August 6th and 9th, 2026" />
 <meta property="og:image" content="https://fedicon.ca/ogimage.png" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s ease-in-out infinite',
-                        'fade-in': 'fadeIn 0.8s ease-out',
-                        'slide-up': 'slideUp 0.8s ease-out',
-                        'network-pulse': 'networkPulse 3s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0px)' },
-                        },
-                        networkPulse: {
-                            '0%, 100%': { transform: 'scale(1)', opacity: '0.7' },
-                            '50%': { transform: 'scale(1.1)', opacity: '1' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.bunny.net/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
-        * {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
-        }
-        
-        .dark .gradient-bg {
-            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2a2a2a 100%);
-        }
-        
-        .glass {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-        
-        .light-glass {
-            background: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-        
-        .dark .glass {
-            background: rgba(0,0,0,0.4) !important;
-            border-color: rgba(255,255,255,0.1) !important;
-        }
-        
-        .section-spacing {
-            margin-bottom: 8rem;
-        }
-        
-        .hero-text {
-            color: #1e293b;
-        }
-        
-        .dark .hero-text {
-            color: #ffffff;
-        }
-        
-        .accent-text {
-            color: #64748b;
-        }
-        
-        .dark .accent-text {
-            color: #94a3b8;
-        }
-        
-        .network-dot {
-            animation: networkPulse 3s ease-in-out infinite;
-        }
-        
-        .network-dot:nth-child(2) { animation-delay: 0.5s; }
-        .network-dot:nth-child(3) { animation-delay: 1s; }
-        .network-dot:nth-child(4) { animation-delay: 1.5s; }
-        
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .dark .hover-lift:hover {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-        
-        .dark .glass {
-            background: rgba(0,0,0,0.3) !important;
-            border-color: rgba(255,255,255,0.1) !important;
-        }
-        
-        .dark body {
-            background: #0a0a0a;
-        }
-    </style>
+<style type="text/tailwindcss">
+  @theme {
+    --color-ink:        #08060a;
+    --color-ink-2:      #100a0e;
+    --color-ink-3:      #1a1116;
+    --color-crimson:    #e11d2e;
+    --color-crimson-hi: #ff3a4c;
+    --color-crimson-lo: #7a0c18;
+    --color-ash:        #b6a7ac;
+    --color-ash-dim:    #6e6166;
+    --font-display:     "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:        "JetBrains Mono", ui-monospace, monospace;
+  }
+</style>
+
+<style>
+  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: #08060a;
+    background-image:
+      radial-gradient(60% 50% at 78% 8%, rgba(225,29,46,0.22), transparent 60%),
+      radial-gradient(50% 60% at 12% 92%, rgba(122,12,24,0.30), transparent 65%),
+      radial-gradient(120% 120% at 50% 0%, #120a0e, #08060a 60%);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  #shader {
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    z-index: -3; opacity: 0.95; filter: blur(6px) saturate(115%);
+    pointer-events: none;
+  }
+  .bg-vignette {
+    position: fixed; inset: 0; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(70% 55% at 50% -10%, rgba(255,58,76,0.10), transparent 55%),
+      radial-gradient(120% 90% at 50% 120%, rgba(0,0,0,0.85), transparent 55%);
+  }
+  .bg-grain {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.05;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .bg-grid {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.5;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 30%, transparent 78%);
+            mask-image: radial-gradient(120% 100% at 50% 0%, #000 30%, transparent 78%);
+  }
+
+  .wordmark {
+    background-image:
+      radial-gradient(115% 85% at 50% -10%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 40%),
+      linear-gradient(180deg, #ff616e 0%, #ff3a4c 28%, #e11d2e 60%, #c4111f 100%);
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+    filter:
+      drop-shadow(0 2px 2px rgba(122,12,24,0.35))
+      drop-shadow(0 16px 48px rgba(225,29,46,0.32));
+  }
+
+  .wordmark { position: relative; }
+
+  .wordmark::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 38%, rgba(255,255,255,0.85) 50%, transparent 62%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+    animation: wordmark-sheen 7s ease-in-out infinite;
+  }
+  @keyframes wordmark-sheen {
+    0%   { background-position: 160% 0; }
+    55%, 100% { background-position: -60% 0; }
+  }
+
+  .hairline { border-color: rgba(255,255,255,0.10); }
+
+  .glass {
+    background: linear-gradient(160deg, rgba(255,255,255,0.045), rgba(255,255,255,0.012));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .glass-hover { transition: transform .45s cubic-bezier(.2,.7,.2,1), border-color .45s, box-shadow .45s; }
+  .glass-hover:hover {
+    transform: translateY(-6px);
+    border-color: rgba(225,29,46,0.55);
+    box-shadow: 0 24px 70px -30px rgba(225,29,46,0.55);
+  }
+
+  .chip {
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.03);
+    font-family: var(--font-mono);
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  .marquee-track { animation: marquee 34s linear infinite; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @keyframes rise { from { opacity: 0; transform: translateY(34px); } to { opacity: 1; transform: none; } }
+  .rise { animation: rise 1s cubic-bezier(.2,.7,.2,1) both; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .rise, .marquee-track { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  .nav-scrolled { background: rgba(8,6,10,0.72); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+
+  ::selection { background: rgba(225,29,46,0.85); color: #fff; }
+
+  .node-key::before {
+    content: ""; position: absolute; left: -5px; top: 8px;
+    width: 9px; height: 9px; border-radius: 9999px;
+    background: #1a1116; border: 1.5px solid rgba(255,255,255,0.25);
+  }
+  .node-key::before { background: var(--color-crimson); border-color: var(--color-crimson-hi); box-shadow: 0 0 0 4px rgba(225,29,46,0.18), 0 0 22px rgba(225,29,46,0.7); }
+  @media (prefers-reduced-motion: reduce) {
+    .wordmark::after { animation: none; opacity: 0; }
+  }
+</style>
 </head>
-<body class="transition-colors duration-300">
-    <div class="fixed top-6 right-6 z-50">
-        <button id="darkModeToggle" class="glass bg-white/20 dark:bg-gray-800/20 p-3 rounded-full border border-white/30 dark:border-gray-700/30 hover:bg-white/30 dark:hover:bg-gray-700/30 transition-all duration-300 hover-lift">
-            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-400 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
-            </svg>
-            <svg class="w-6 h-6 text-gray-600 dark:hidden block" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-            </svg>
-        </button>
+
+<body class="text-ash antialiased overflow-x-hidden">
+
+<canvas id="shader" aria-hidden="true"></canvas>
+<div class="bg-vignette" aria-hidden="true"></div>
+<div class="bg-grain" aria-hidden="true"></div>
+
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+  <nav class="mx-auto max-w-7xl px-5 sm:px-8 h-[68px] flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5 group">
+      <img src="./logo.png" alt="FediCon logo" class="inline-block w-10 h-10" />
+      <span class="font-display font-extrabold tracking-tight text-white text-lg">FediCon 2026</span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-9 label text-[11px] text-ash">
+      <a href="#about"    class="hover:text-white transition-colors">Overview</a>
+      <a href="#speakers" class="hover:text-white transition-colors">Speakers</a>
+      <a href="#schedule" class="hover:text-white transition-colors">Schedule</a>
+      <a href="#venue"    class="hover:text-white transition-colors">Venue</a>
     </div>
 
-    <div class="fixed inset-0 z-0">
-        <div class="gradient-bg w-full h-full">
-            <div class="absolute top-20 left-20">
-                <div class="network-dot w-3 h-3 bg-gray-400/40 dark:bg-white/30 rounded-full"></div>
-            </div>
-            <div class="absolute top-40 right-32">
-                <div class="network-dot w-2 h-2 bg-gray-500/50 dark:bg-white/40 rounded-full"></div>
-            </div>
-            <div class="absolute bottom-32 left-32">
-                <div class="network-dot w-4 h-4 bg-gray-300/30 dark:bg-white/20 rounded-full"></div>
-            </div>
-            <div class="absolute bottom-20 right-20">
-                <div class="network-dot w-2 h-2 bg-gray-600/60 dark:bg-white/50 rounded-full"></div>
-            </div>
-            
-            <svg class="absolute inset-0 w-full h-full opacity-10 dark:opacity-20">
-                <line x1="80" y1="80" x2="300" y2="160" stroke="#64748b" stroke-width="1"/>
-                <line x1="300" y1="160" x2="150" y2="400" stroke="#64748b" stroke-width="1"/>
-                <line x1="150" y1="400" x2="350" y2="480" stroke="#64748b" stroke-width="1"/>
-            </svg>
+    <div class="flex items-center gap-3">
+      <a href="https://2026.fossy.ca/attend/tickets/" target="_blank" rel="noopener"
+         class="hidden sm:inline-flex items-center gap-2 rounded-full bg-crimson px-5 py-2.5 text-[12px] font-semibold text-white tracking-wide shadow-[0_10px_30px_-8px_rgba(225,29,46,0.8)] hover:bg-crimson-hi transition-colors">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a3 3 0 0 1 0 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a3 3 0 0 1 0-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375Z"/></svg>
+        Get Tickets
+      </a>
+      <button id="menuBtn" aria-label="Open menu" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full hairline border text-white">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="md:hidden hidden border-t hairline" style="background:rgba(8,6,10,0.92);backdrop-filter:blur(14px);">
+    <div class="px-6 py-6 flex flex-col gap-5 label text-sm text-ash">
+      <a href="#about"    class="mobile-link hover:text-white">Overview</a>
+      <a href="#speakers" class="mobile-link hover:text-white">Speakers</a>
+      <a href="#schedule" class="mobile-link hover:text-white">Schedule</a>
+      <a href="#venue"    class="mobile-link hover:text-white">Venue</a>
+      <a href="https://2026.fossy.ca/attend/tickets/" target="_blank" rel="noopener" class="mt-1 inline-flex items-center gap-2 rounded-full bg-crimson px-5 py-3 text-white justify-center tracking-wide">Get Tickets</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="relative min-h-[100svh] flex flex-col justify-center pt-24 pb-12">
+    <div class="bg-grid"></div>
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8 w-full">
+
+      <div class="rise flex items-center gap-3 label text-[11px] text-crimson-hi" style="animation-delay:.05s">
+        <span class="inline-block w-1.5 h-1.5 bg-crimson-hi rotate-45"></span>
+        Canada · Fediverse Conference
+      </div>
+
+      <h1 data-text="FediCon" class="wordmark rise font-display font-extrabold tracking-[-0.04em] mt-6"
+          style="font-size:clamp(3.6rem,17vw,12.5rem);line-height:0.82;animation-delay:.12s">
+        FediCon
+      </h1>
+
+      <p class="rise mt-7 max-w-2xl text-lg sm:text-xl leading-relaxed text-ash" style="animation-delay:.22s">
+        A Canadian conference for <span class="text-white font-medium">decentralized social networks</span>
+        and the social web — two days of curated talks, lightning demos, and the people building the open internet.
+      </p>
+
+      <div class="rise mt-10 grid grid-cols-2 sm:grid-cols-4 gap-px overflow-hidden rounded-2xl border hairline" style="animation-delay:.32s">
+        <div class="bg-ink-2/60 px-5 py-5">
+          <div class="label text-[10px] text-ash-dim">Dates</div>
+          <div class="mt-1.5 text-white font-semibold text-base sm:text-lg">Aug 6 – 9</div>
+          <div class="font-mono text-[11px] text-ash">2026</div>
         </div>
-    </div>
+        <div class="bg-ink-2/60 px-5 py-5">
+          <div class="label text-[10px] text-ash-dim">Venue</div>
+          <div class="mt-1.5 text-white font-semibold text-base sm:text-lg">UBC Campus</div>
+          <div class="font-mono text-[11px] text-ash">Vancouver, BC</div>
+        </div>
+        <div class="bg-ink-2/60 px-5 py-5">
+          <div class="label text-[10px] text-ash-dim">Format</div>
+          <div class="mt-1.5 text-white font-semibold text-base sm:text-lg">2 Days</div>
+          <div class="font-mono text-[11px] text-ash">Talks + Demos</div>
+        </div>
+        <div class="bg-ink-2/60 px-5 py-5">
+          <div class="label text-[10px] text-ash-dim">Part of</div>
+          <div class="mt-1.5 text-white font-semibold text-base sm:text-lg">FOSSY</div>
+          <div class="font-mono text-[11px] text-ash">2026</div>
+        </div>
+      </div>
 
-    <div class="relative z-10 min-h-screen">
-        <header class="pt-32 pb-20">
-            <div class="container mx-auto px-6">
-                <div class="text-center animate-fade-in">
-                    <h1 class="text-7xl md:text-9xl font-bold hero-text mb-6 animate-slide-up tracking-tight">
-                        Fedi<span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Con</span>
-                    </h1>
-                    <p class="text-2xl md:text-3xl accent-text mb-12 animate-slide-up max-w-4xl mx-auto leading-relaxed font-light">
-                        A Canadian conference for decentralized social networks and the social web
-                    </p>
-                    <div class="flex flex-col md:flex-row items-center justify-center gap-8 accent-text text-xl animate-slide-up">
-                        <div class="flex items-center gap-3 glass light-glass px-8 py-4 rounded-2xl dark:bg-gray-800/20">
-                            <svg class="w-7 h-7 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                            <span class="font-semibold">August 6th to 9th, 2026</span>
-                        </div>
-                        <div class="flex items-center gap-3 glass light-glass px-8 py-4 rounded-2xl dark:bg-gray-800/20">
-                            <svg class="w-7 h-7 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                            <span class="font-semibold">Vancouver, BC</span>
-                        </div>
-                    </div>
+      <div class="rise mt-10 flex flex-wrap items-center gap-4" style="animation-delay:.42s">
+        <a href="https://2026.fossy.ca/attend/tickets/" target="_blank" rel="noopener"
+           class="group inline-flex items-center gap-2.5 rounded-full bg-crimson px-7 py-3.5 font-semibold text-white shadow-[0_18px_50px_-16px_rgba(225,29,46,0.9)] hover:bg-crimson-hi transition-colors">
+          Get Your Ticket
+          <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+        </a>
+        <a href="#schedule"
+           class="inline-flex items-center gap-2.5 rounded-full border hairline px-7 py-3.5 font-medium text-white hover:border-white/30 hover:bg-white/[0.03] transition-colors">
+          <svg class="w-5 h-5 text-crimson-hi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/></svg>
+          View Schedule
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="relative border-y hairline py-4 overflow-hidden bg-ink/40">
+    <div class="marquee-track flex whitespace-nowrap label text-[12px] text-ash will-change-transform">
+      <span class="flex items-center">
+        <span class="mx-8">August 6 – 9, 2026</span><span class="text-crimson">/</span>
+        <span class="mx-8">UBC Campus</span><span class="text-crimson">/</span>
+        <span class="mx-8">Vancouver, BC</span><span class="text-crimson">/</span>
+        <span class="mx-8">During FOSSY</span><span class="text-crimson">/</span>
+        <span class="mx-8">ActivityPub</span><span class="text-crimson">/</span>
+        <span class="mx-8">The Open Social Web</span><span class="text-crimson">/</span>
+      </span>
+      <span class="flex items-center" aria-hidden="true">
+        <span class="mx-8">August 6 – 9, 2026</span><span class="text-crimson">/</span>
+        <span class="mx-8">UBC Campus</span><span class="text-crimson">/</span>
+        <span class="mx-8">Vancouver, BC</span><span class="text-crimson">/</span>
+        <span class="mx-8">During FOSSY</span><span class="text-crimson">/</span>
+        <span class="mx-8">ActivityPub</span><span class="text-crimson">/</span>
+        <span class="mx-8">The Open Social Web</span><span class="text-crimson">/</span>
+      </span>
+    </div>
+  </div>
+
+  <section id="about" class="relative py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal flex items-baseline gap-4 mb-14">
+        <span class="label text-[11px] text-ash">Two Days of Innovation</span>
+        <span class="flex-1 h-px bg-white/10"></span>
+      </div>
+
+      <div class="reveal max-w-3xl">
+        <h2 class="font-display font-extrabold text-white tracking-tight text-3xl sm:text-5xl leading-[1.05]">
+          A curated gathering for the people<br class="hidden sm:block" />
+          building the <span class="text-crimson-hi">federated future</span>.
+        </h2>
+        <p class="mt-6 text-lg text-ash leading-relaxed">
+          FediCon brings together developers, founders, and advocates of the open social web for two
+          focused days of keynotes, deep dives, lightning talks, and live demos — no walled gardens,
+          no shareholders, just the protocols and people behind the fediverse.
+        </p>
+      </div>
+
+      <div class="mt-16 grid gap-5 md:grid-cols-3">
+        <article class="reveal glass glass-hover rounded-3xl p-8" style="transition-delay:.0s">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-crimson/15 border border-crimson/30 text-crimson-hi">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/></svg>
+          </div>
+          <h3 class="mt-6 font-display font-bold text-white text-xl">Curated Speakers</h3>
+          <p class="mt-3 text-ash leading-relaxed">Hand-picked pioneers and builders sharing the architecture, ideas, and culture driving decentralized social.</p>
+        </article>
+
+        <article class="reveal glass glass-hover rounded-3xl p-8" style="transition-delay:.08s">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-crimson/15 border border-crimson/30 text-crimson-hi">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/></svg>
+          </div>
+          <h3 class="mt-6 font-display font-bold text-white text-xl">Lightning Talks</h3>
+          <p class="mt-3 text-ash leading-relaxed">Fast, high-density sessions where the community shares projects, experiments, and protocol ideas in minutes.</p>
+        </article>
+
+        <article class="reveal glass glass-hover rounded-3xl p-8" style="transition-delay:.16s">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-crimson/15 border border-crimson/30 text-crimson-hi">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/><path d="M15.91 11.672a.375.375 0 0 1 0 .656l-5.603 3.113a.375.375 0 0 1-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112Z"/></svg>
+          </div>
+          <h3 class="mt-6 font-display font-bold text-white text-xl">Live Demos</h3>
+          <p class="mt-3 text-ash leading-relaxed">See new apps, clients, and protocol features running in real time, straight from the people who shipped them.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="speakers" class="relative py-24 sm:py-32">
+    <div class="bg-grid opacity-30"></div>
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal flex items-baseline gap-4 mb-14">
+        <span class="label text-[11px] text-ash">Featured Speakers</span>
+        <span class="flex-1 h-px bg-white/10"></span>
+      </div>
+
+      <div class="reveal max-w-3xl mb-14">
+        <h2 class="font-display font-extrabold text-white tracking-tight text-3xl sm:text-5xl leading-[1.05]">
+          The pioneers and innovators<br class="hidden sm:block" />
+          building the open web.
+        </h2>
+      </div>
+
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+        <article class="reveal glass glass-hover rounded-3xl p-7 flex flex-col">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-16 h-16 rounded-2xl grid place-items-center font-display font-extrabold text-white text-xl"
+                 style="background:linear-gradient(150deg,#e11d2e,#7a0c18);box-shadow:0 10px 30px -10px rgba(225,29,46,0.7);">EP</div>
+            <div class="min-w-0">
+              <h3 class="font-display font-bold text-white text-xl leading-tight">Evan S. Prodromou</h3>
+              <p class="mt-1 text-sm text-crimson-hi">Fediverse &amp; Social Web Pioneer</p>
+            </div>
+          </div>
+          <div class="mt-6 label text-[10px] text-ash-dim">Recognized for</div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">ActivityPub</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">W3C</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">StatusNet</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">pump.io</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">Social Web Foundation</span>
+          </div>
+        </article>
+
+        <article class="reveal glass glass-hover rounded-3xl p-7 flex flex-col" style="transition-delay:.06s">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-16 h-16 rounded-2xl grid place-items-center font-display font-extrabold text-white text-xl"
+                 style="background:linear-gradient(150deg,#e11d2e,#7a0c18);box-shadow:0 10px 30px -10px rgba(225,29,46,0.7);">DS</div>
+            <div class="min-w-0">
+              <h3 class="font-display font-bold text-white text-xl leading-tight">Daniel Supernault</h3>
+              <p class="mt-1 text-sm text-crimson-hi">Creator of Pixelfed &amp; Loops</p>
+            </div>
+          </div>
+          <div class="mt-6 label text-[10px] text-ash-dim">Recognized for</div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">Pixelfed</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">Loops</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">FediDB</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">Sup</span>
+          </div>
+        </article>
+
+        <article class="reveal glass glass-hover rounded-3xl p-7 flex flex-col" style="transition-delay:.12s">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-16 h-16 rounded-2xl grid place-items-center font-display font-extrabold text-white text-xl"
+                 style="background:linear-gradient(150deg,#e11d2e,#7a0c18);box-shadow:0 10px 30px -10px rgba(225,29,46,0.7);">JL</div>
+            <div class="min-w-0">
+              <h3 class="font-display font-bold text-white text-xl leading-tight">Julian Lam</h3>
+              <p class="mt-1 text-sm text-crimson-hi">NodeBB Co-Founder &amp; Developer</p>
+            </div>
+          </div>
+          <div class="mt-6 label text-[10px] text-ash-dim">Recognized for</div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">NodeBB</span>
+          </div>
+        </article>
+
+        <article class="reveal glass glass-hover rounded-3xl p-7 flex flex-col">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-16 h-16 rounded-2xl grid place-items-center font-display font-extrabold text-white text-xl"
+                 style="background:linear-gradient(150deg,#e11d2e,#7a0c18);box-shadow:0 10px 30px -10px rgba(225,29,46,0.7);">BP</div>
+            <div class="min-w-0">
+              <h3 class="font-display font-bold text-white text-xl leading-tight">Ben Pate</h3>
+              <p class="mt-1 text-sm text-crimson-hi">Fediverse Developer</p>
+            </div>
+          </div>
+          <div class="mt-6 label text-[10px] text-ash-dim">Recognized for</div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">Emissary</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">Bandwagon</span>
+          </div>
+        </article>
+
+        <article class="reveal glass glass-hover rounded-3xl p-7 flex flex-col" style="transition-delay:.06s">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-16 h-16 rounded-2xl grid place-items-center font-display font-extrabold text-white text-xl"
+                 style="background:linear-gradient(150deg,#e11d2e,#7a0c18);box-shadow:0 10px 30px -10px rgba(225,29,46,0.7);">CT</div>
+            <div class="min-w-0">
+              <h3 class="font-display font-bold text-white text-xl leading-tight">Chris Trottier</h3>
+              <p class="mt-1 text-sm text-crimson-hi">Fediverse &amp; Social Web Advocate</p>
+            </div>
+          </div>
+          <div class="mt-6 label text-[10px] text-ash-dim">Recognized for</div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">@atomicpoet</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">Akkomane Sysop</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">GreatApe</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">#SpaceHost</span>
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">AllYourBases</span>
+          </div>
+        </article>
+
+        <article class="reveal glass glass-hover rounded-3xl p-7 flex flex-col" style="transition-delay:.12s">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 w-16 h-16 rounded-2xl grid place-items-center font-display font-extrabold text-white text-xl"
+                 style="background:linear-gradient(150deg,#e11d2e,#7a0c18);box-shadow:0 10px 30px -10px rgba(225,29,46,0.7);">AO</div>
+            <div class="min-w-0">
+              <h3 class="font-display font-bold text-white text-xl leading-tight">Anthony Ozone</h3>
+              <p class="mt-1 text-sm text-crimson-hi">Podcaster &amp; Social Web Advocate</p>
+            </div>
+          </div>
+          <div class="mt-6 label text-[10px] text-ash-dim">Recognized for</div>
+          <div class="mt-3 flex flex-wrap gap-2">
+            <span class="chip text-[10px] text-ash rounded-md px-2 py-1">FireSideFedi</span>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="reveal mt-12 text-ash">
+        Want to present at FediCon 2026? Pitch a talk at
+        <a href="mailto:hello@fedicon.ca?subject=Proposal+to+Present+at+FediCon+2026" class="text-crimson-hi underline decoration-crimson/40 underline-offset-4 hover:text-white transition-colors">hello@fedicon.ca</a>.
+      </p>
+    </div>
+  </section>
+
+  <section id="schedule" class="relative py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal flex items-baseline gap-4 mb-14">
+        <span class="label text-[11px] text-ash">Two-Day Timeline</span>
+        <span class="flex-1 h-px bg-white/10"></span>
+      </div>
+
+      <div class="reveal max-w-3xl mb-16">
+        <h2 class="font-display font-extrabold text-white tracking-tight text-3xl sm:text-5xl leading-[1.05]">
+          Each day opens with a <span class="text-crimson-hi">keynote</span>.
+        </h2>
+        <p class="mt-5 text-ash">Doors and coffee from 08:30. Sample running order — final titles and times are confirmed closer to the event.</p>
+      </div>
+
+      <div class="grid gap-10 lg:grid-cols-2 lg:gap-8">
+
+        <div class="reveal">
+          <div class="glass rounded-3xl p-6 sm:p-8 mb-8 flex items-end justify-between">
+            <div>
+              <div class="label text-[11px] text-ash-dim">Day One</div>
+              <div class="mt-1 font-display font-extrabold text-white text-3xl">Friday</div>
+            </div>
+            <div class="text-right font-mono text-crimson-hi">
+              <div class="text-2xl font-bold">07</div>
+              <div class="text-[11px] text-ash">AUG 2026</div>
+            </div>
+          </div>
+
+          <ol class="relative border-l border-white/10 ml-1 pl-6 space-y-6">
+
+            <li class="node node-key relative">
+              <div class="rounded-2xl p-5" style="background:linear-gradient(150deg,rgba(225,29,46,0.16),rgba(122,12,24,0.10));border:1px solid rgba(225,29,46,0.4);box-shadow:0 18px 50px -28px rgba(225,29,46,0.8);">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-4 h-4 text-crimson-hi" viewBox="0 0 24 24" fill="currentColor"><path d="M11.48 3.5a.56.56 0 0 1 1.04 0l2.12 5.11c.08.2.27.33.48.35l5.52.44c.5.04.7.66.32.99l-4.2 3.6a.56.56 0 0 0-.18.56l1.28 5.38a.56.56 0 0 1-.84.61l-4.72-2.88a.56.56 0 0 0-.59 0L6.98 20.54a.56.56 0 0 1-.84-.61l1.28-5.38a.56.56 0 0 0-.18-.56l-4.2-3.6a.56.56 0 0 1 .32-.99l5.52-.44c.21-.02.4-.15.48-.35L11.48 3.5Z"/></svg>
+                  <span class="label text-[10px] text-crimson-hi">Keynote · 09:00</span>
                 </div>
+                <h4 class="font-display font-bold text-white text-lg leading-snug">TBA</h4>
+                <p class="mt-1 text-sm text-ash">Evan S. Prodromou</p>
+              </div>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">10:30 · Talk</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">TBA</h4>
+              <p class="text-sm text-ash">TBA</p>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">11:15 · Talk</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">TBA</h4>
+              <p class="text-sm text-ash">TBA</p>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-ash-dim">12:00 · Break</div>
+              <h4 class="mt-1 font-display font-medium text-ash text-base">Lunch &amp; Hallway Track</h4>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">13:15 · Lightning</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">Lightning Talks — Round One</h4>
+              <p class="text-sm text-ash">Community submissions</p>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">14:00 · Talk</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">TBA</h4>
+              <p class="text-sm text-ash">TBA</p>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">14:45 · Demos</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">Live Demos — New Apps Showcase</h4>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">15:45 · Panel</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">TBA</h4>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-ash-dim">16:45 · Wrap</div>
+              <h4 class="mt-1 font-display font-medium text-ash text-base">Day One Close</h4>
+            </li>
+          </ol>
+        </div>
+
+        <div class="reveal" style="transition-delay:.1s">
+          <div class="glass rounded-3xl p-6 sm:p-8 mb-8 flex items-end justify-between">
+            <div>
+              <div class="label text-[11px] text-ash-dim">Day Two</div>
+              <div class="mt-1 font-display font-extrabold text-white text-3xl">Saturday</div>
             </div>
-        </header>
-
-        <main class="pb-32">
-            <div class="container mx-auto px-6">
-                <section class="section-spacing">
-                    <div class="grid md:grid-cols-2 gap-16 items-center">
-                        <div class="animate-slide-up">
-                            <h2 class="text-5xl md:text-6xl font-bold hero-text mb-8 leading-tight">
-                                Two Days of<br>
-                                <span class="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Innovation</span>
-                            </h2>
-                            <p class="accent-text text-xl leading-relaxed mb-8 font-light">
-                                FediCon is a 2 day event featuring a selection of curated speakers, lightning talks & demos about apps, protocol features.
-                            </p>
-                            <div class="flex flex-wrap gap-4">
-                                <div class="glass light-glass px-6 py-3 rounded-full border-none">
-                                    <span class="hero-text font-medium">Curated Speakers</span>
-                                </div>
-                                <div class="glass light-glass px-6 py-3 rounded-full border-none">
-                                    <span class="hero-text font-medium">Lightning Talks</span>
-                                </div>
-                                <div class="glass light-glass px-6 py-3 rounded-full border-none">
-                                    <span class="hero-text font-medium">Live Demos</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="animate-float">
-                            <div class="glass light-glass p-12 rounded-3xl border-none hover-lift shadow-2xl relative overflow-hidden">
-                                <!-- Background gradient overlay -->
-                                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-blue-500/10 dark:from-purple-400/20 dark:to-blue-400/20"></div>
-                                
-                                <!-- Timeline design -->
-                                <div class="relative z-10">
-                                    <h4 class="text-2xl font-bold hero-text mb-8 text-center">Conference Timeline</h4>
-                                    
-                                    <!-- Day 1 -->
-                                    <div class="flex items-center mb-8">
-                                        <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center shadow-lg mr-6">
-                                            <span class="text-white font-bold text-xl">1</span>
-                                        </div>
-                                        <div class="flex-1">
-                                            <h5 class="hero-text font-semibold text-lg mb-1">Day 1</h5>
-                                            <p class="accent-text">Keynote • Deep Dives • Lightning Talks</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="flex justify-center mb-8">
-                                        <div class="w-1 h-8 bg-gradient-to-b from-purple-500 to-blue-500 rounded-full opacity-50"></div>
-                                    </div>
-                                    
-                                    <div class="flex items-center mb-8">
-                                        <div class="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-lg mr-6">
-                                            <span class="text-white font-bold text-xl">2</span>
-                                        </div>
-                                        <div class="flex-1">
-                                            <h5 class="hero-text font-semibold text-lg mb-1">Day 2</h5>
-                                            <p class="accent-text">Keynote • Demos • Lightning Talks</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section>
-                    <div class="text-center mb-16 animate-slide-up">
-                        <h3 class="text-5xl md:text-6xl font-bold hero-text mb-8">Get Your Tickets</h3>
-                        <p class="accent-text text-xl max-w-3xl mx-auto font-light">
-                            Want to attend FediCon?
-                        </p>
-                        <p>
-                                <a href="https://2026.fossy.ca/attend/tickets/" target="_blank" class="inline-flex items-center mt-8 px-8 py-4 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-semibold rounded-2xl transition-all duration-300 hover-lift shadow-lg">
-                                    Get FediCon Ticket
-                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                    </svg>
-                                </a>
-                        </p>
-                    </div>
-                </section>
-
-                <section class="section-spacing">
-                    <div class="glass light-glass p-12 md:p-16 rounded-3xl border-none hover-lift animate-slide-up shadow-2xl">
-                        <div class="grid md:grid-cols-2 gap-12 items-center">
-                            <div>
-                                <h3 class="text-4xl md:text-5xl font-bold hero-text mb-8">Venue</h3>
-                                <div class="space-y-6">
-                                    <div>
-                                        <h4 class="text-2xl font-semibold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-3">UBC Campus</h4>
-			
-<!--
-                                        <p class="accent-text text-lg">800 Robson Street<br>Vancouver, BC, Canada</p>
--->
-			
-                                    </div>
-			
-<!--
-                                    <div>
-                                        <h4 class="text-xl font-semibold hero-text mb-2">Room</h4>
-                                        <p class="accent-text text-lg">Theatre C300</p>
-                                    </div>
--->
-			
-                                </div>
-			
-<!--
-                                <a href="https://robsonsquare.ubc.ca/" target="_blank" class="inline-flex items-center mt-8 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-semibold rounded-2xl transition-all duration-300 hover-lift shadow-lg">
-                                    View Location
-                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                    </svg>
-                                </a>
--->
-			
-                            </div>
-                            <div class="flex justify-center">
-                                <div class="w-full max-w-md h-80 glass light-glass rounded-3xl border-none overflow-hidden shadow-xl relative">
-			
-<!--
-                                    <iframe 
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.776!2d-123.12064!3d49.28374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548673f143a94fb3%3A0x847574c045b7e8a7!2sUBC%20Robson%20Square!5e0!3m2!1sen!2sca!4v1620000000000!5m2!1sen!2sca"
-                                        width="100%" 
-                                        height="100%" 
-                                        style="border:0; filter: contrast(1.1) saturate(0.9);" 
-                                        allowfullscreen="" 
-                                        loading="lazy" 
-                                        referrerpolicy="no-referrer-when-downgrade"
-                                        class="rounded-3xl">
-                                    </iframe>
--->
-			
-                                    
-                                    <!-- Overlay for glassmorphism effect -->
-                                    <div class="absolute inset-0 bg-white/10 dark:bg-black/20 pointer-events-none rounded-3xl"></div>
-                                    
-                                    <!-- Location marker overlay -->
-                                    <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-full shadow-lg">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="section-spacing">
-                    <div class="text-center mb-16 animate-slide-up">
-                        <h3 class="text-5xl md:text-6xl font-bold hero-text mb-8">Featured Speakers</h3>
-                        <p class="accent-text text-xl max-w-3xl mx-auto font-light">
-                            Learn from the pioneers and innovators building the decentralized future of social media.
-                        </p>
-                        <p class="accent-text text-lg max-w-3xl mx-auto mt-4">
-                            If you would like to present at FediCon 2026, please contact us at <a href="mailto:hello@fedicon.ca?subject=Proposal+to+Present+at+FediCon+2025" class="text-purple-600 hover:text-purple-500 transition-colors font-medium">hello@fedicon.ca</a>
-                        </p>
-                    </div>
-                    
-                    <div class="grid md:grid-cols-2 gap-10">
-                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
-                            <div class="w-32 h-32 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
-                                <span class="text-white text-3xl font-bold">EP</span>
-                            </div>
-                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Evan S. Prodromou</h4>
-                            <p class="text-purple-500 font-semibold mb-4 text-lg text-center">Fediverse &amp; Social Web Pioneer</p>
-                            <div class="space-y-4">
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
-                                    <p class="accent-text text-sm leading-relaxed">
-                                        ActivityPub, ActivityStreams, Fediverse pioneer, GNU Social, identi.ca, OStatus, pump.io, Social Web Foundation, StatusNet, W3C
-                                    </p>
-                                </div>
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
-                                    <p class="accent-text">TBD</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
-                            <div class="w-32 h-32 bg-gradient-to-br from-red-400 to-red-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
-                                <span class="text-white text-3xl font-bold">DS</span>
-                            </div>
-                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Daniel Supernault</h4>
-                            <p class="text-red-500 font-semibold mb-4 text-lg text-center">Creator of Pixelfed & Loops</p>
-                            <div class="space-y-4">
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
-                                    <p class="accent-text text-sm leading-relaxed">
-                                        Pixelfed, Loops, FediDB, Sup
-                                    </p>
-                                </div>
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
-                                    <p class="accent-text">TBD</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
-                            <div class="w-32 h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
-                                <span class="text-white text-3xl font-bold">JL</span>
-                            </div>
-                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Julian Lam</h4>
-                            <p class="text-green-500 font-semibold mb-4 text-lg text-center">NodeBB Co-Founder &amp; Developer</p>
-                            <div class="space-y-4">
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
-                                    <p class="accent-text text-sm leading-relaxed">
-                                        NodeBB
-                                    </p>
-                                </div>
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
-                                    <p class="accent-text">TBD</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
-                            <div class="w-32 h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
-                                <span class="text-white text-3xl font-bold">BP</span>
-                            </div>
-                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Ben Pate</h4>
-                            <p class="text-green-500 font-semibold mb-4 text-lg text-center">Fediverse Developer</p>
-                            <div class="space-y-4">
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
-                                    <p class="accent-text text-sm leading-relaxed">
-                                        Bandwagon, Emissary
-                                    </p>
-                                </div>
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
-                                    <p class="accent-text">TBD</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
-                            <div class="w-32 h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
-                                <span class="text-white text-3xl font-bold">CT</span>
-                            </div>
-                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Chris Trottier</h4>
-                            <p class="text-green-500 font-semibold mb-4 text-lg text-center">Fediverse &amp; Social Web Advocate</p>
-                            <div class="space-y-4">
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
-                                    <p class="accent-text text-sm leading-relaxed">
-                                        @atomicpoet@atomicpoet.org, Akkomane Sysop, AllYourBases, #SpaceHost, GreatApe, Hootsuite
-                                    </p>
-                                </div>
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
-                                    <p class="accent-text">TBD</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="glass light-glass p-10 rounded-3xl border-none hover-lift animate-slide-up shadow-xl">
-                            <div class="w-32 h-32 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-8 flex items-center justify-center shadow-lg">
-                                <span class="text-white text-3xl font-bold">CT</span>
-                            </div>
-                            <h4 class="text-2xl font-bold hero-text mb-3 text-center">Anthony Ozone</h4>
-                            <p class="text-green-500 font-semibold mb-4 text-lg text-center">Fediverse &amp; Social Web Podcaster and Advocate</p>
-                            <div class="space-y-4">
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Recognized For</h5>
-                                    <p class="accent-text text-sm leading-relaxed">
-                                        FireSideFedi, SpaceBalls fan
-                                    </p>
-                                </div>
-                                <div>
-                                    <h5 class="text-lg font-semibold hero-text mb-2">Talk Title</h5>
-                                    <p class="accent-text">TBD</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
-
-                <section>
-                    <div class="text-center mb-16 animate-slide-up">
-                        <h3 class="text-5xl md:text-6xl font-bold hero-text mb-8">Get Your Tickets</h3>
-                        <p class="accent-text text-xl max-w-3xl mx-auto font-light">
-                            Want to attend FediCon?
-                            <!-- Enter your details below and we'll let you know the moment early bird registration opens. -->
-                        </p>
-                        <p>
-                                <a href="https://lu.ma/p4bbb941" target="_blank" class="inline-flex items-center mt-8 px-8 py-4 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-500 hover:to-pink-500 text-white font-semibold rounded-2xl transition-all duration-300 hover-lift shadow-lg">
-                                    Get FediCon Ticket
-                                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                    </svg>
-                                </a>
-                        </p>
-                    </div>
-                    
-                    <!--
-                    <div class="max-w-lg mx-auto animate-slide-up">
-                        <div class="glass light-glass p-12 rounded-3xl border-none hover-lift shadow-2xl">
-                            <form action="https://formsubmit.co/cikrempeaux@gmail.com" method="POST" target="_blank" class="space-y-6">
-                                <div>
-                                    <label for="name" class="block hero-text font-semibold mb-3 text-lg">Full Name</label>
-                                    <input 
-                                        type="text" 
-                                        id="name" 
-                                        name="name"
-                                        required
-                                        placeholder="Your full name"
-                                        class="w-full px-6 py-4 bg-white/30 dark:bg-gray-800/30 border border-gray-300/30 dark:border-gray-600/30 rounded-2xl hero-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-lg"
-                                    >
-                                </div>
-                                <div>
-                                    <label for="email" class="block hero-text font-semibold mb-3 text-lg">Email Address</label>
-                                    <input 
-                                        type="email" 
-                                        id="email" 
-                                        name="email"
-                                        required
-                                        placeholder="your@email.com"
-                                        class="w-full px-6 py-4 bg-white/30 dark:bg-gray-800/30 border border-gray-300/30 dark:border-gray-600/30 rounded-2xl hero-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-lg"
-                                    >
-                                </div>
-                                <div>
-                                    <label for="message" class="block hero-text font-semibold mb-3 text-lg">Fediverse IDs / Handles</label>
-                                    <input 
-                                        type="text" 
-                                        id="message" 
-                                        name="message"
-                                        required
-                                        placeholder="@yourhandle@instance.social"
-                                        class="w-full px-6 py-4 bg-white/30 dark:bg-gray-800/30 border border-gray-300/30 dark:border-gray-600/30 rounded-2xl hero-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-lg"
-                                    >
-                                </div>
-                                <button 
-                                    type="submit"
-                                    class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-semibold py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl text-lg"
-                                >
-                                    Join Early Bird List
-                                </button>
-                            </form>
-                            
-                            <div class="mt-8 pt-8 border-t border-gray-300/20 dark:border-gray-600/20">
-                                <p class="accent-text text-center">
-                                    Visit <a href="https://fedicon.ca" class="text-purple-600 hover:text-purple-500 transition-colors font-medium">fedicon.ca</a> for updates
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-                </section>
-
-                <section class="mt-32">
-                    <div class="glass light-glass p-12 rounded-3xl border-none hover-lift animate-slide-up shadow-2xl text-center">
-                        <h3 class="text-3xl font-bold hero-text mb-6">Accommodations</h3>
-                        <p class="accent-text text-lg leading-relaxed">
-                            If you need help finding <em>accommodations</em>, please see the FediCon <a class="text-purple-600 hover:text-purple-500 transition-colors font-medium" href="where-to-stay">where-to-stay</a> page.
-                            <br /> 
-                        </p>
-                    </div>
-                </section>
-
-                <section class="mt-32">
-                    <div class="glass light-glass p-12 rounded-3xl border-none hover-lift animate-slide-up shadow-2xl text-center">
-                        <h3 class="text-3xl font-bold hero-text mb-6">Organizer</h3>
-                        <p class="accent-text text-lg leading-relaxed">
-                            <strong>FediCon</strong> is being organized by
-                            <br /> 
-                            <a href="https://mastodon.social/@reiver" class="text-purple-600 hover:text-purple-500 transition-colors font-medium">@reiver@mastodon.social</a>
-                            <br /> 
-                            (Charles Iliya Krempeaux)
-                        </p>
-                        <p class="accent-text text-lg leading-relaxed mt-4">
-                            If you have any questions or comments, please contact him.
-                        </p>
-                    </div>
-                </section>
+            <div class="text-right font-mono text-crimson-hi">
+              <div class="text-2xl font-bold">08</div>
+              <div class="text-[11px] text-ash">AUG 2026</div>
             </div>
-        </main>
+          </div>
+
+          <ol class="relative border-l border-white/10 ml-1 pl-6 space-y-6">
+
+            <li class="node node-key relative">
+              <div class="rounded-2xl p-5" style="background:linear-gradient(150deg,rgba(225,29,46,0.16),rgba(122,12,24,0.10));border:1px solid rgba(225,29,46,0.4);box-shadow:0 18px 50px -28px rgba(225,29,46,0.8);">
+                <div class="flex items-center gap-2 mb-2">
+                  <svg class="w-4 h-4 text-crimson-hi" viewBox="0 0 24 24" fill="currentColor"><path d="M11.48 3.5a.56.56 0 0 1 1.04 0l2.12 5.11c.08.2.27.33.48.35l5.52.44c.5.04.7.66.32.99l-4.2 3.6a.56.56 0 0 0-.18.56l1.28 5.38a.56.56 0 0 1-.84.61l-4.72-2.88a.56.56 0 0 0-.59 0L6.98 20.54a.56.56 0 0 1-.84-.61l1.28-5.38a.56.56 0 0 0-.18-.56l-4.2-3.6a.56.56 0 0 1 .32-.99l5.52-.44c.21-.02.4-.15.48-.35L11.48 3.5Z"/></svg>
+                  <span class="label text-[10px] text-crimson-hi">Keynote · 09:00</span>
+                </div>
+                <h4 class="font-display font-bold text-white text-lg leading-snug">Loops: One Year Later</h4>
+                <p class="mt-1 text-sm text-ash">Daniel Supernault</p>
+              </div>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">10:30 · Talk</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">TBA</h4>
+              <p class="text-sm text-ash">TBA</p>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">11:15 · Deep Dive</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">TBA</h4>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-ash-dim">12:00 · Break</div>
+              <h4 class="mt-1 font-display font-medium text-ash text-base">Lunch &amp; Hallway Track</h4>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">13:15 · Lightning</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">Lightning Talks — Round Two</h4>
+              <p class="text-sm text-ash">Community submissions</p>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">14:00 · Demos</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">TBA</h4>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">14:45 · Workshop</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">TBA</h4>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-crimson-hi">15:45 · Panel</div>
+              <h4 class="mt-1 font-display font-semibold text-white text-base">TBA</h4>
+            </li>
+
+            <li class="node relative">
+              <div class="font-mono text-xs text-ash-dim">16:45 · Wrap</div>
+              <h4 class="mt-1 font-display font-medium text-ash text-base">Closing Remarks</h4>
+            </li>
+          </ol>
+        </div>
+
+      </div>
     </div>
+  </section>
 
-    <script>
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const html = document.documentElement;
+  <section id="venue" class="relative py-24 sm:py-32">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal flex items-baseline gap-4 mb-14">
+        <span class="label text-[11px] text-ash">Venue &amp; Travel</span>
+        <span class="flex-1 h-px bg-white/10"></span>
+      </div>
 
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        html.classList.toggle('dark', savedTheme === 'dark');
+      <div class="grid gap-5 lg:grid-cols-3">
+        <div class="reveal glass rounded-3xl p-8 lg:col-span-2 relative overflow-hidden">
+          <div class="bg-grid opacity-40"></div>
+          <div class="relative">
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-crimson/15 border border-crimson/30 text-crimson-hi">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+            </div>
+            <h3 class="mt-6 font-display font-extrabold text-white text-3xl sm:text-4xl tracking-tight">UBC Campus</h3>
+            <p class="mt-2 font-mono text-sm text-crimson-hi">Vancouver, British Columbia · Canada</p>
+            <p class="mt-5 max-w-xl text-ash leading-relaxed">
+              FediCon takes place on the University of British Columbia campus, co-located with FOSSY 2026 —
+              one of the most beautiful settings for an open-source gathering, between the mountains and the sea.
+            </p>
+            <div class="mt-7 flex flex-wrap gap-3">
+              <span class="chip text-[11px] text-ash rounded-full px-4 py-2">Co-located with FOSSY</span>
+              <span class="chip text-[11px] text-ash rounded-full px-4 py-2">Transit accessible</span>
+              <span class="chip text-[11px] text-ash rounded-full px-4 py-2">August 6 – 9, 2026</span>
+            </div>
+          </div>
+        </div>
 
-        darkModeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-        });
+        <div class="reveal glass rounded-3xl p-8 flex flex-col justify-between" style="transition-delay:.08s" id="where-to-stay">
+          <div>
+            <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-crimson/15 border border-crimson/30 text-crimson-hi">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 0 0 8.716-6.747M12 21a9 9 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a9 9 0 0 1 7.843 4.582M12 3a9 9 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+            </div>
+            <h3 class="mt-6 font-display font-bold text-white text-xl">Need a place to stay?</h3>
+            <p class="mt-3 text-ash leading-relaxed">We keep a running list of recommended accommodations near campus to make planning easy.</p>
+          </div>
+          <a href="https://2026.fossy.ca/travel/" target="_blank" rel="noopener"
+             class="mt-7 inline-flex items-center gap-2 text-crimson-hi font-medium hover:text-white transition-colors">
+            Where to stay
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 19.5 19.5 4.5m0 0H8.25m11.25 0V15.75"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  <section class="relative py-12 sm:py-20">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="reveal relative overflow-hidden rounded-[2rem] p-10 sm:p-16 text-center"
+           style="background:linear-gradient(135deg,#e11d2e 0%,#a30f1d 45%,#3d0810 100%);box-shadow:0 40px 120px -50px rgba(225,29,46,0.9);">
+        <div class="bg-grid opacity-25"></div>
+        <div class="relative">
+          <span class="label text-[11px] text-white/70">Join us</span>
+          <h2 class="mt-5 font-display font-extrabold text-white tracking-tight text-4xl sm:text-6xl leading-[0.95]">
+            See you in Vancouver.
+          </h2>
+          <p class="mt-5 max-w-xl mx-auto text-white/85 text-lg">
+            Tickets are handled through FOSSY 2026. Grab yours and join two days of building the open social web.
+          </p>
+          <div class="mt-9 flex flex-wrap justify-center gap-4">
+            <a href="https://2026.fossy.ca/attend/tickets/" target="_blank" rel="noopener"
+               class="group inline-flex items-center gap-2.5 rounded-full bg-white px-8 py-4 font-semibold text-ink hover:bg-white/90 transition-colors">
+              Get Your Ticket
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3"/></svg>
+            </a>
+            <a href="mailto:hello@fedicon.ca?subject=Proposal+to+Present+at+FediCon+2026"
+               class="inline-flex items-center gap-2.5 rounded-full border border-white/40 px-8 py-4 font-medium text-white hover:bg-white/10 transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+              Propose a Talk
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+  <footer class="relative border-t hairline mt-12">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16">
+      <div class="grid gap-12 md:grid-cols-3">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <img src="./logo.png" alt="FediCon logo" class="inline-block w-10 h-10" />
+            <span class="font-display font-extrabold text-white text-xl">FediCon 2026</span>
+          </div>
+          <p class="mt-4 max-w-xs text-ash leading-relaxed">
+            A Canadian conference for decentralized social networks and the social web.
+          </p>
+        </div>
 
-        document.querySelectorAll('.animate-slide-up').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-            observer.observe(el);
-        });
-    </script>
+        <div>
+          <div class="label text-[11px] text-ash-dim mb-5">Navigate</div>
+          <ul class="space-y-3 text-ash">
+            <li><a href="#about" class="hover:text-white transition-colors">Overview</a></li>
+            <li><a href="#speakers" class="hover:text-white transition-colors">Speakers</a></li>
+            <li><a href="#schedule" class="hover:text-white transition-colors">Schedule</a></li>
+            <li><a href="#venue" class="hover:text-white transition-colors">Venue &amp; Travel</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="label text-[11px] text-ash-dim mb-5">Organizer</div>
+          <p class="text-ash leading-relaxed">
+            Organized by<br />
+            <a href="https://mastodon.social/@reiver" target="_blank" rel="noopener" class="text-white hover:text-crimson-hi transition-colors">Charles Iliya Krempeaux</a><br />
+            <span class="font-mono text-sm text-ash-dim">@reiver@mastodon.social</span>
+          </p>
+          <a href="mailto:hello@fedicon.ca" class="mt-4 inline-flex items-center gap-2 text-crimson-hi hover:text-white transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+            hello@fedicon.ca
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-14 pt-8 border-t hairline flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-mono text-xs text-ash-dim">FediCon 2026 · August 6 – 9 · UBC Campus, Vancouver BC</p>
+        <p class="font-mono text-xs text-ash-dim">Built for the open social web.</p>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  const canvas = document.getElementById('shader');
+  let gl;
+  try { gl = canvas.getContext('webgl', { antialias: false, alpha: false }); } catch (e) { gl = null; }
+  if (!gl) { canvas.style.display = 'none'; return; }
+
+  const vs = `attribute vec2 p; void main(){ gl_Position = vec4(p,0.0,1.0); }`;
+  const fs = `
+    precision highp float;
+    uniform vec2 u_res; uniform float u_time;
+    float hash(vec2 p){ p=fract(p*vec2(123.34,456.21)); p+=dot(p,p+45.32); return fract(p.x*p.y); }
+    float noise(vec2 p){
+      vec2 i=floor(p), f=fract(p);
+      float a=hash(i), b=hash(i+vec2(1.,0.)), c=hash(i+vec2(0.,1.)), d=hash(i+vec2(1.,1.));
+      vec2 u=f*f*(3.-2.*f);
+      return mix(mix(a,b,u.x), mix(c,d,u.x), u.y);
+    }
+    float fbm(vec2 p){ float v=0.,a=0.5; for(int i=0;i<5;i++){ v+=a*noise(p); p*=2.03; a*=0.5; } return v; }
+    void main(){
+      vec2 uv = gl_FragCoord.xy / u_res.xy;
+      vec2 p = uv; p.x *= u_res.x / u_res.y;
+      float t = u_time * 0.035;
+      vec2 q = vec2(fbm(p*1.4 + vec2(0.0, t)), fbm(p*1.4 + vec2(5.2,1.3) + t));
+      vec2 r = vec2(fbm(p*1.4 + 3.5*q + vec2(1.7,9.2) + 0.15*t), fbm(p*1.4 + 3.5*q + vec2(8.3,2.8) + 0.13*t));
+      float f = fbm(p*1.4 + 3.8*r);
+      vec3 ink  = vec3(0.030, 0.018, 0.026);
+      vec3 deep = vec3(0.30, 0.025, 0.065);
+      vec3 hot  = vec3(0.82, 0.07, 0.14);
+      vec3 col = mix(ink, deep, clamp(f*f*1.7, 0.0, 1.0));
+      col = mix(col, hot, clamp(pow(r.x, 2.2)*0.75, 0.0, 1.0));
+      float vig = smoothstep(1.25, 0.15, length(uv-0.5));
+      col *= vig*0.9 + 0.08;
+      col *= 0.82;
+      gl_FragColor = vec4(col, 1.0);
+    }`;
+
+  function compile(type, src){ const s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s); return s; }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compile(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog); gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  const loc = gl.getAttribLocation(prog, 'p');
+  gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+  const uRes = gl.getUniformLocation(prog, 'u_res');
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const SCALE = 0.55;
+
+  function resize(){
+    const w = Math.floor(window.innerWidth * SCALE);
+    const h = Math.floor(window.innerHeight * SCALE);
+    canvas.width = w; canvas.height = h;
+    gl.viewport(0,0,w,h);
+    gl.uniform2f(uRes, w, h);
+  }
+  window.addEventListener('resize', resize, { passive:true });
+  resize();
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const start = performance.now();
+  function frame(now){
+    gl.uniform1f(uTime, (now - start) / 1000);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    if (!reduce) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('nav-scrolled', window.scrollY > 24);
+window.addEventListener('scroll', onScroll, { passive:true });
+onScroll();
+
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+document.querySelectorAll('.mobile-link').forEach(a =>
+  a.addEventListener('click', () => mobileMenu.classList.add('hidden'))
+);
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+(function () {
+  const cutoff = new Date('2026-07-06T00:00:00-07:00');
+  if (Date.now() >= cutoff.getTime()) {
+    const el = document.getElementById('where-to-stay');
+    el.previousElementSibling?.classList.replace('lg:col-span-2', 'lg:col-span-3');
+    if (el) el.style.display = 'none';
+  }
+})();
+</script>
 </body>
 </html>
